@@ -1,0 +1,31 @@
+body {
+   font-family: Helvetica, Arial, sans-serif;
+}
+
+h1 {
+   color: #85c17b;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+   filter: dropshadow(color=#000000, offx=1, offy=1);
+}
+
+h2 {
+   color: #9fde6a;
+   text-shadow: 0 1px 2px rgba(0, 0, 0, .2);
+   filter: dropshadow(color=#000000, offx=1, offy=1);
+   margin-bottom: 10px;
+   margin-top: 35px;
+}
+
+a {
+   background-color: #0b97c4;
+   padding: 12px;
+   border-radius: 8px;
+   -moz-border-radius: 8px;
+   -ms-border-radius: 8px;
+   color: #ffffff;
+   text-decoration: none;
+}
+
+svg {
+   border: 4px solid #85c17b;
+}

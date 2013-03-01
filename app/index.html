@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>SVG Transform Rectangle</title>
+    <style>
+        @import url("style.css");
+    </style>
+</head>
+<body>
+<h1>SVG Transform Rectangle</h1>
+<p><a href="https://github.com/benrhodes/svg-transform-rectangle/">Get the code on Github</a></p>
+<h2>Demo</h2>
+<svg id="svgCanvas" width="600" height="500"></svg>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
+<script src="scripts/vendor/handlebars.runtime.js"></script>
+<script src="scripts/vendor/request-animation-frame-shim.js"></script>
+<script src="scripts/templates.js"></script>
+<script src="scripts/conversions.js"></script>
+<script src="scripts/svg-backbone-view.js"></script>
+<script src="scripts/transform-rectangle-model.js"></script>
+<script src="scripts/transform-rectangle-view.js"></script>
+<script>
+	$(document).ready(function() {
+		var selectionRectangle = new NoCircleNo.TransformRectangleView();
+		$("#svgCanvas").append(selectionRectangle.render().el);
+        selectionRectangle.moveTo(200, 200);
+	});
+</script>
+</body>
+</html>
