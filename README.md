@@ -3,7 +3,7 @@ SVG Transform Rectangle
 
 A transform rectangle to use in a your JavaScript application.
 
-[Vanilla Demo](http://www.nocircleno.com/svg_transform_rectangle/ "Vanilla Demo")
+[View Demo](http://www.nocircleno.com/svg_transform_rectangle/ "Demo")
 
 Features
 -----------------------

@@ -1,17 +1,20 @@
 <!doctype html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>SVG Transform Rectangle</title>
+    <meta charset="UTF-8">
+    <title>SVG Transform Rectangle : Using it</title>
     <style>
         @import url("style.css");
     </style>
 </head>
 <body>
+<a class="home" href="http://www.nocircleno.com">No Circle No!</a>
 <h1>SVG Transform Rectangle</h1>
-<p><a href="https://github.com/benrhodes/svg-transform-rectangle/">Get the code on Github</a></p>
 <h2>Demo</h2>
-<svg id="svgCanvas" width="600" height="500"></svg>
+<svg id="svgCanvas" width="600" height="500">
+    <rect x="250" y="212" rx="30" ry="30" width="100" height="76" fill="#ff0000" stroke="#DDD" stroke-width="2" />
+</svg>
+<p><a href="https://github.com/benrhodes/svg-transform-rectangle/">Get the code on Github</a></p>
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
 <script src="http://cdnjs.cloudflare.com/ajax/libs/backbone.js/0.9.10/backbone-min.js"></script>
@@ -23,11 +26,28 @@
 <script src="scripts/transform-rectangle-model.js"></script>
 <script src="scripts/transform-rectangle-view.js"></script>
 <script>
-	$(document).ready(function() {
-		var selectionRectangle = new NoCircleNo.TransformRectangleView();
-		$("#svgCanvas").append(selectionRectangle.render().el);
-        selectionRectangle.moveTo(200, 200);
-	});
+    $(document).ready(function() {
+        var rectRef = $("#svgCanvas rect").first();
+        var rectWidth = Number(rectRef.attr("width"));
+        var rectHeight = Number(rectRef.attr("height"));
+        var rectX = Number(rectRef.attr("x"));
+        var rectY = Number(rectRef.attr("y"));
+        var transformRectangleX = rectX + rectWidth/2;
+        var transformRectangleY = rectY + rectHeight/2;
+
+        var transformRectangle = new NoCircleNo.TransformRectangleView();
+        $("#svgCanvas").append(transformRectangle.render().el);
+        transformRectangle.resize(rectWidth, rectHeight);
+        transformRectangle.moveTo(transformRectangleX, transformRectangleY);
+
+        // listen for change events on the transform rectangle model, use the info to transform the svg object
+        transformRectangle.model.on("change:width change:height change:rotation", onTransformChange);
+
+        function onTransformChange(model) {
+            var scale = model.get("width") / rectWidth;
+            rectRef.attr("transform", "matrix(" + scale + ", " + 0 + ", " + 0 + ", " + scale + ", " + (transformRectangleX - scale * transformRectangleX) + ", " + (transformRectangleY - scale * transformRectangleY) + ") rotate(" + model.get("rotation") + ", " + transformRectangleX + ", " + transformRectangleY + ")");
+        }
+    });
 </script>
 </body>
 </html>
