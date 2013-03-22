@@ -12,7 +12,7 @@
          _(this).bindAll("onRotationStartDrag", "onHandleStartDrag", "onMouseMove", "onMouseUp", "onAnimationFrame");
          this.template = window.NoCircleNo.templates.svg_transform_rectangle;
          this.transformTemplate = window.NoCircleNo.templates.svg_transform;
-         this.bodyEl = $("body");
+         this.documentEl = $(window.document);
          this.model = new window.NoCircleNo.TransformRectangleModel();
          this.model.on("change:x change:y change:rotation", this.onTransformChange, this);
          this.model.on("change:width change:height", this.onSizeChange, this);
@@ -52,8 +52,8 @@
          this.calculatePageCenterPoint();
          this.rotationHandleDrag = true;
 
-         this.bodyEl.bind("mousemove", this.onMouseMove);
-         this.bodyEl.bind("mouseup", this.onMouseUp);
+         this.documentEl.bind("mousemove", this.onMouseMove);
+         this.documentEl.bind("mouseup", this.onMouseUp);
       },
 
       onHandleStartDrag: function(e) {
@@ -63,8 +63,8 @@
 
          this.scaleHandleDrag = true;
 
-         this.bodyEl.bind("mousemove", this.onMouseMove);
-         this.bodyEl.bind("mouseup", this.onMouseUp);
+         this.documentEl.bind("mousemove", this.onMouseMove);
+         this.documentEl.bind("mouseup", this.onMouseUp);
       },
 
       onMouseMove: function(e) {
@@ -128,8 +128,8 @@
          e.preventDefault();
          this.rotationHandleDrag = false;
          this.scaleHandleDrag = false;
-         this.bodyEl.unbind("mousemove", this.onMouseMove);
-         this.bodyEl.unbind("mouseup", this.onMouseUp);
+         this.documentEl.unbind("mousemove", this.onMouseMove);
+         this.documentEl.unbind("mouseup", this.onMouseUp);
       },
 
       onAnimationFrame: function() {

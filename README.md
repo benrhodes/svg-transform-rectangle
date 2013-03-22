@@ -30,4 +30,5 @@ The Handlebar templates are currently compiled using [Grunt JS](http://gruntjs.c
 Release History
 -----------------------
 
+* 0.1.1 - Changed rectangle handle events to bind to the document element.  Removed node_modules from repo.  Run npm install if you want to use the Grunt.
 * 0.1.0 - Initial release.
