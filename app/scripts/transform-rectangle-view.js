@@ -1,4 +1,4 @@
-(function (window, $, _) {
+(function (window, $, _, Modernizr) {
 
    window.NoCircleNo = window.NoCircleNo || {};
 
@@ -9,13 +9,23 @@
       className:"transform-rectangle",
 
       initialize:function () {
-         _(this).bindAll("onRotationStartDrag", "onHandleStartDrag", "onMouseMove", "onMouseUp", "onAnimationFrame");
+         _(this).bindAll("onRotationStartDrag", "onHandleStartDrag", "onMoveEvent", "onEndEvent", "onAnimationFrame");
          this.template = window.NoCircleNo.templates.svg_transform_rectangle;
          this.transformTemplate = window.NoCircleNo.templates.svg_transform;
          this.documentEl = $(window.document);
          this.model = new window.NoCircleNo.TransformRectangleModel();
          this.model.on("change:x change:y change:rotation", this.onTransformChange, this);
          this.model.on("change:width change:height", this.onSizeChange, this);
+
+         if(Modernizr.touch) {
+            this.startEventName = "touchstart";
+            this.moveEventName = "touchmove";
+            this.endEventName = "touchend";
+         } else {
+            this.startEventName = "mousedown";
+            this.moveEventName = "mousemove";
+            this.endEventName = "mouseup";
+         }
       },
 
       moveTo: function(x, y) {
@@ -52,8 +62,8 @@
          this.calculatePageCenterPoint();
          this.rotationHandleDrag = true;
 
-         this.documentEl.bind("mousemove", this.onMouseMove);
-         this.documentEl.bind("mouseup", this.onMouseUp);
+         this.documentEl.bind(this.moveEventName, this.onMoveEvent);
+         this.documentEl.bind(this.endEventName, this.onEndEvent);
       },
 
       onHandleStartDrag: function(e) {
@@ -63,19 +73,29 @@
 
          this.scaleHandleDrag = true;
 
-         this.documentEl.bind("mousemove", this.onMouseMove);
-         this.documentEl.bind("mouseup", this.onMouseUp);
+         this.documentEl.bind(this.moveEventName, this.onMoveEvent);
+         this.documentEl.bind(this.endEventName, this.onEndEvent);
       },
 
-      onMouseMove: function(e) {
+      onMoveEvent: function(e) {
+         var pageX, pageY;
+
          this.pendingWidth = this.model.get("width");
          this.pendingHeight = this.model.get("height");
          this.pendingRotation = this.model.get("rotation");
 
+         if(Modernizr.touch) {
+            pageX = e.originalEvent.touches[0].pageX;
+            pageY = e.originalEvent.touches[0].pageY;
+         } else {
+            pageX = e.pageX;
+            pageY = e.pageY;
+         }
+
          if(this.rotationHandleDrag) {
-            this.calculateRectangleRotation(e.pageX, e.pageY);
+            this.calculateRectangleRotation(pageX, pageY);
          } else if(this.scaleHandleDrag) {
-            this.calculateRectangleSize(e.pageX, e.pageY);
+            this.calculateRectangleSize(pageX, pageY);
          }
 
          window.requestAnimationFrame(this.onAnimationFrame);
@@ -124,12 +144,12 @@
          }
       },
 
-      onMouseUp: function(e) {
+      onEndEvent: function(e) {
          e.preventDefault();
          this.rotationHandleDrag = false;
          this.scaleHandleDrag = false;
-         this.documentEl.unbind("mousemove", this.onMouseMove);
-         this.documentEl.unbind("mouseup", this.onMouseUp);
+         this.documentEl.unbind(this.moveEventName, this.onMoveEvent);
+         this.documentEl.unbind(this.endEventName, this.onEndEvent);
       },
 
       onAnimationFrame: function() {
@@ -154,11 +174,11 @@
 
       bindEvents: function() {
 
-         $(this.ulScaleHandle).bind("mousedown", this.onHandleStartDrag);
-         $(this.urScaleHandle).bind("mousedown", this.onHandleStartDrag);
-         $(this.llScaleHandle).bind("mousedown", this.onHandleStartDrag);
-         $(this.lrScaleHandle).bind("mousedown", this.onHandleStartDrag);
-         $(this.rotationHandle).bind("mousedown", this.onRotationStartDrag);
+         $(this.ulScaleHandle).bind(this.startEventName, this.onHandleStartDrag);
+         $(this.urScaleHandle).bind(this.startEventName, this.onHandleStartDrag);
+         $(this.llScaleHandle).bind(this.startEventName, this.onHandleStartDrag);
+         $(this.lrScaleHandle).bind(this.startEventName, this.onHandleStartDrag);
+         $(this.rotationHandle).bind(this.startEventName, this.onRotationStartDrag);
 
       },
 
@@ -166,11 +186,11 @@
          this.model.destroy();
          this.model.off("change:x change:y change:rotation", this.onTransformChange);
          this.model.off("change:width change:height", this.onSizeChange);
-         $(this.ulScaleHandle).unbind("mousedown", this.onHandleStartDrag);
-         $(this.urScaleHandle).unbind("mousedown", this.onHandleStartDrag);
-         $(this.llScaleHandle).unbind("mousedown", this.onHandleStartDrag);
-         $(this.lrScaleHandle).unbind("mousedown", this.onHandleStartDrag);
-         $(this.rotationHandle).unbind("mousedown", this.onRotationStartDrag);
+         $(this.ulScaleHandle).unbind(this.startEventName, this.onHandleStartDrag);
+         $(this.urScaleHandle).unbind(this.startEventName, this.onHandleStartDrag);
+         $(this.llScaleHandle).unbind(this.startEventName, this.onHandleStartDrag);
+         $(this.lrScaleHandle).unbind(this.startEventName, this.onHandleStartDrag);
+         $(this.rotationHandle).unbind(this.startEventName, this.onRotationStartDrag);
       },
 
       render:function () {
@@ -198,4 +218,4 @@
       }
    });
 
-}(window, jQuery, _));
+}(window, jQuery, _, Modernizr));

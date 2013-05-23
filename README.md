@@ -30,5 +30,6 @@ The Handlebar templates are currently compiled using [Grunt JS](http://gruntjs.c
 Release History
 -----------------------
 
+* 0.2.0 - Selection Rectangle now works on touch screens.  The code will automatically use touch events when available.
 * 0.1.1 - Changed rectangle handle events to bind to the document element.  Removed node_modules from repo.  Run npm install if you want to use Grunt.
 * 0.1.0 - Initial release.
