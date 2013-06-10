@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Conversions Tests</title>
+    <link rel="stylesheet" href="http://code.jquery.com/qunit/qunit-1.11.0.css">
+</head>
+<body>
+<div id="qunit"></div>
+<div id="qunit-fixture"></div>
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="http://code.jquery.com/qunit/qunit-1.11.0.js"></script>
+<script type="text/javascript" src="../scripts/conversions.js"></script>
+
+<script>
+    $(document).ready(function() {
+
+        module( "Conversions Tests");
+
+        test( "radians_ValidNumberInDegrees_ReturnsCorrectValueInRadians", function() {
+            var degrees = 66;
+            var expectedRadians = 1.1519173063162575;
+
+
+            equal( NoCircleNo.Conversions.radians(degrees), expectedRadians);
+        });
+
+        test( "degrees_ValidNumberInRadians_ReturnsCorrectValueInDegrees", function() {
+            var expectedDegrees = 66;
+            var radians = 1.1519173063162575;
+
+
+            equal( NoCircleNo.Conversions.degrees(radians), expectedDegrees);
+        });
+
+    });
+</script>
+</body>
+</html>

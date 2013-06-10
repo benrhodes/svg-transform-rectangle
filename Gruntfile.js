@@ -4,9 +4,9 @@ module.exports = function (grunt) {
    'use strict';
 
    grunt.loadNpmTasks('grunt-contrib-handlebars');
-   grunt.loadNpmTasks('grunt-contrib-jshint');
    grunt.loadNpmTasks('grunt-contrib-connect');
    grunt.loadNpmTasks('grunt-open');
+   grunt.loadNpmTasks('grunt-contrib-qunit');
 
    // Project configuration.
    grunt.initConfig({
@@ -31,6 +31,12 @@ module.exports = function (grunt) {
             }
          }
       },
+      qunit:{
+         options: {
+            timeout: 5000
+         },
+         all: ['app/tests/*.html']
+      },
       open : {
          test : {
             path: 'http://localhost:8080/index.html'
@@ -49,4 +55,7 @@ module.exports = function (grunt) {
 
    // test server tasks
    grunt.registerTask('localhost', ['open:test', 'connect:test']);
+
+   // Travis CI task.
+   grunt.registerTask('travis', 'qunit');
 };
