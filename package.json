@@ -18,9 +18,6 @@
    "scripts": {
       "test": "grunt travis --verbose"
    },
-   "dependencies": {
-      "grunt-cli": "~0.1.6"
-   },
    "devDependencies": {
       "grunt": "~0.4.1",
       "grunt-contrib-handlebars": "~0.5.9",
