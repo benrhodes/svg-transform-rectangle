@@ -33,6 +33,96 @@
             equal( NoCircleNo.Conversions.degrees(radians), expectedDegrees);
         });
 
+        test( "getQuadrantNumber_XAboveZeroAndYAboveZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 1;
+            var x = 1;
+            var y = 1;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XIsZeroAndYAboveZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 1;
+            var x = 0;
+            var y = 1;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XAboveZeroAndYIsZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 1;
+            var x = 1;
+            var y = 0;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XAndYAreZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 1;
+            var x = 0;
+            var y = 0;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XAndYAreZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 1;
+            var x = 0;
+            var y = 0;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XLessThanZeroAndYIsZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 2;
+            var x = -1;
+            var y = 0;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XLessThanZeroAndYAboveZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 2;
+            var x = -1;
+            var y = 1;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XLessThanZeroAndYAboveZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 2;
+            var x = -1;
+            var y = 1;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XAndYBelowZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 3;
+            var x = -1;
+            var y = -1;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
+        test( "getQuadrantNumber_XIsZeroAndYBelowZero_ReturnsCorrectQuadrant", function() {
+            var expectedQuadrant = 4;
+            var x = 0;
+            var y = -1;
+
+
+            equal( NoCircleNo.Conversions.getQuadrantNumber(x, y), expectedQuadrant);
+        });
+
     });
 </script>
 </body>
