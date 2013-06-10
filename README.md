@@ -1,4 +1,4 @@
-SVG Transform Rectangle
+SVG Transform Rectangle [![Build Status](https://travis-ci.org/benrhodes/svg-transform-rectangle.png)](https://travis-ci.org/benrhodes/svg-transform-rectangle)
 =======================
 
 A transform rectangle to use in a your JavaScript application.
