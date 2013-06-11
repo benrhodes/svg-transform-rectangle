@@ -2,8 +2,8 @@ this["NoCircleNo"] = this["NoCircleNo"] || {};
 this["NoCircleNo"]["templates"] = this["NoCircleNo"]["templates"] || {};
 
 this["NoCircleNo"]["templates"]["svg_transform"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
-helpers = helpers || Handlebars.helpers; data = data || {};
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
@@ -28,8 +28,8 @@ helpers = helpers || Handlebars.helpers; data = data || {};
   });
 
 this["NoCircleNo"]["templates"]["svg_transform_rectangle"] = Handlebars.template(function (Handlebars,depth0,helpers,partials,data) {
-  this.compilerInfo = [2,'>= 1.0.0-rc.3'];
-helpers = helpers || Handlebars.helpers; data = data || {};
+  this.compilerInfo = [4,'>= 1.0.0'];
+helpers = this.merge(helpers, Handlebars.helpers); data = data || {};
   var buffer = "", stack1, functionType="function", escapeExpression=this.escapeExpression;
 
 
