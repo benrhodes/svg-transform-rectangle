@@ -3,10 +3,25 @@ module.exports = function (grunt) {
 
    'use strict';
 
-   grunt.loadNpmTasks('grunt-contrib-handlebars');
-   grunt.loadNpmTasks('grunt-contrib-connect');
-   grunt.loadNpmTasks('grunt-open');
-   grunt.loadNpmTasks('grunt-contrib-qunit');
+   var browsers = [{
+         browserName: "firefox",
+         version: "21",
+         platform: "WIN7"
+      },
+      {
+         browserName: "chrome",
+         platform: "WIN7"
+      },
+      {
+         browserName: "internet explorer",
+         platform: "WIN8",
+         version: "10"
+      },
+      {
+         browserName: "internet explorer",
+         platform: "WIN7",
+         version: "9"
+      }];
 
    // Project configuration.
    grunt.initConfig({
@@ -50,11 +65,31 @@ module.exports = function (grunt) {
                keepalive: true
             }
          }
-      }
+      },
+      'saucelabs-qunit': {
+         all: {
+            options: {
+               urls: ["http://localhost:8080/tests/conversions-test.html"],
+               tunnelTimeout: 5,
+               build: process.env.TRAVIS_JOB_ID,
+               concurrency: 3,
+               browsers: browsers,
+               testname: "SVG Rectangle Tests",
+               tags: ["master"]
+            }
+         }
+      },
+      watch: {}
    });
+
+   // Loading dependencies
+   for (var key in grunt.file.readJSON("package.json").devDependencies) {
+      if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
+   }
 
    // test server tasks
    grunt.registerTask('localhost', ['open:test', 'connect:test']);
+   grunt.registerTask("test", ["connect", "saucelabs-qunit"]);
 
    // Travis CI task.
    grunt.registerTask('travis', 'qunit');
