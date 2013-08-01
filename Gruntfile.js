@@ -88,9 +88,8 @@ module.exports = function (grunt) {
    }
 
    // test server tasks
-   grunt.registerTask('localhost', ['open:test', 'connect:test']);
    grunt.registerTask("test", ["connect", "saucelabs-qunit"]);
 
    // Travis CI task.
-   grunt.registerTask('travis', 'qunit');
+   grunt.registerTask('travis', 'test');
 };
