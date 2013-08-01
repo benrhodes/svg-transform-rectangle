@@ -61,8 +61,7 @@ module.exports = function (grunt) {
          test: {
             options: {
                port: 8080,
-               base: 'app',
-               keepalive: true
+               base: 'app'
             }
          }
       },
@@ -88,7 +87,7 @@ module.exports = function (grunt) {
    }
 
    // test server tasks
-   grunt.registerTask("test", ["connect", "saucelabs-qunit"]);
+   grunt.registerTask("test", ["connect:test", "saucelabs-qunit"]);
 
    // Travis CI task.
    grunt.registerTask('travis', 'test');
