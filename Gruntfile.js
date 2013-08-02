@@ -3,10 +3,64 @@ module.exports = function (grunt) {
 
    'use strict';
 
-   grunt.loadNpmTasks('grunt-contrib-handlebars');
-   grunt.loadNpmTasks('grunt-contrib-connect');
-   grunt.loadNpmTasks('grunt-open');
-   grunt.loadNpmTasks('grunt-contrib-qunit');
+   var browsers = [{
+         browserName: "firefox",
+         version: "23",
+         platform: "Windows 7"
+      },
+      {
+         browserName: "chrome",
+         platform: "Windows 7"
+      },
+      {
+         browserName: "internet explorer",
+         platform: "Windows 7",
+         version: "9"
+      },
+      {
+         browserName: "internet explorer",
+         platform: "Windows 8",
+         version: "10"
+      },
+      {
+         browserName: "firefox",
+         platform: "Windows 8",
+         version: "23"
+      },
+      {
+         browserName: "chrome",
+         platform: "Windows 8"
+      },
+      {
+         browserName: 'chrome',
+         platform:'OS X 10.8'
+      },
+      {
+         browserName: 'safari',
+         platform:'OS X 10.8',
+         version: '6'
+      },
+      {
+         browserName: 'firefox',
+         platform:'OS X 10.6',
+         version: '21'
+      },
+      {
+         browserName: 'iphone',
+         platform:'OS X 10.8',
+         version: '6'
+      },
+      {
+         browserName: 'iphone',
+         platform:'OS X 10.8',
+         version: '6'
+      },
+      {
+         browserName: 'ipad',
+         platform:'OS X 10.8',
+         version: '6'
+      }
+   ];
 
    // Project configuration.
    grunt.initConfig({
@@ -46,16 +100,34 @@ module.exports = function (grunt) {
          test: {
             options: {
                port: 8080,
-               base: 'app',
-               keepalive: true
+               base: 'app'
             }
          }
-      }
+      },
+      'saucelabs-qunit': {
+         all: {
+            options: {
+               urls: ["http://localhost:8080/tests/conversions-test.html"],
+               tunnelTimeout: 5,
+               build: process.env.TRAVIS_JOB_ID,
+               concurrency: 3,
+               browsers: browsers,
+               testname: "SVG Transform Rectangle",
+               tags: ["master"]
+            }
+         }
+      },
+      watch: {}
    });
 
+   // Loading dependencies
+   for (var key in grunt.file.readJSON("package.json").devDependencies) {
+      if (key !== "grunt" && key.indexOf("grunt") === 0) grunt.loadNpmTasks(key);
+   }
+
    // test server tasks
-   grunt.registerTask('localhost', ['open:test', 'connect:test']);
+   grunt.registerTask("test", ["connect:test", "saucelabs-qunit"]);
 
    // Travis CI task.
-   grunt.registerTask('travis', 'qunit');
+   grunt.registerTask('travis', 'test');
 };

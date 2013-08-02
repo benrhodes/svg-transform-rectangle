@@ -1,28 +1,31 @@
 {
-   "name": "SVGTransformRectangle",
-   "version": "0.2.0",
-   "homepage": "https://github.com/benrhodes/svg-transform-rectangle/",
-   "repository": {
-      "type": "git",
-      "url": "git://github.com/benrhodes/svg-transform-rectangle.git"
-   },
-   "bugs": {
-      "url": "https://github.com/benrhodes/svg-transform-rectangle/issues"
-   },
-   "licenses": [
-      {
-         "type": "MIT",
-         "url": "https://github.com/benrhodes/svg-transform-rectangle/blob/master/LICENSE-MIT"
-      }
-   ],
-   "scripts": {
-      "test": "grunt travis --verbose"
-   },
-   "devDependencies": {
-      "grunt": "~0.4.1",
-      "grunt-contrib-handlebars": "~0.5.9",
-      "grunt-contrib-connect": "~0.1.2",
-      "grunt-open": "~0.2.0",
-      "grunt-contrib-qunit": "~0.2.2"
-   }
+  "name": "SVGTransformRectangle",
+  "version": "0.2.0",
+  "homepage": "https://github.com/benrhodes/svg-transform-rectangle/",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/benrhodes/svg-transform-rectangle.git"
+  },
+  "bugs": {
+    "url": "https://github.com/benrhodes/svg-transform-rectangle/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/benrhodes/svg-transform-rectangle/blob/master/LICENSE-MIT"
+    }
+  ],
+  "scripts": {
+    "test": "grunt travis --verbose"
+  },
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-saucelabs": "~4.0.2",
+    "grunt-contrib-handlebars": "~0.5.9",
+    "grunt-contrib-connect": "~0.1.2",
+    "grunt-open": "~0.2.0",
+    "grunt-contrib-qunit": "~0.2.2",
+    "grunt-contrib-watch": "~0.2.0",
+    "grunt-cli": "~0.1.9"
+  }
 }
