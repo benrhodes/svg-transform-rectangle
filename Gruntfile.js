@@ -5,23 +5,57 @@ module.exports = function (grunt) {
 
    var browsers = [{
          browserName: "firefox",
-         version: "21",
-         platform: "WIN7"
+         version: "23",
+         platform: "Windows 7"
       },
       {
          browserName: "chrome",
-         platform: "WIN7"
+         platform: "Windows 7"
       },
       {
          browserName: "internet explorer",
-         platform: "WIN8",
+         platform: "Windows 7",
+         version: "9"
+      },
+      {
+         browserName: "internet explorer",
+         platform: "Windows 8",
          version: "10"
       },
       {
-         browserName: "internet explorer",
-         platform: "WIN7",
-         version: "9"
-      }];
+         browserName: "firefox",
+         platform: "Windows 8",
+         version: "23"
+      },
+      {
+         browserName: "chrome",
+         platform: "Windows 8"
+      },
+      {
+         browserName: 'chrome',
+         platform:'OS X 10.8'
+      },
+      {
+         browserName: 'safari',
+         platform:'OS X 10.8',
+         version: '6'
+      },
+      {
+         browserName: 'iphone',
+         platform:'OS X 10.8',
+         version: '6'
+      },
+      {
+         browserName: 'iphone',
+         platform:'OS X 10.8',
+         version: '6'
+      },
+      {
+         browserName: 'ipad',
+         platform:'OS X 10.8',
+         version: '6'
+      }
+   ];
 
    // Project configuration.
    grunt.initConfig({
@@ -73,7 +107,7 @@ module.exports = function (grunt) {
                build: process.env.TRAVIS_JOB_ID,
                concurrency: 3,
                browsers: browsers,
-               testname: "SVG Rectangle Tests",
+               testname: "SVG Transform Rectangle",
                tags: ["master"]
             }
          }
