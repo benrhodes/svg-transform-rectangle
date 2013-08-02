@@ -1,4 +1,4 @@
-SVG Transform Rectangle [![Build Status](https://travis-ci.org/benrhodes/svg-transform-rectangle.png)](https://travis-ci.org/benrhodes/svg-transform-rectangle)
+SVG Transform Rectangle [![Build Status](https://travis-ci.org/benrhodes/svg-transform-rectangle.png)](https://travis-ci.org/benrhodes/svg-transform-rectangle) [![Selenium Test Status](https://saucelabs.com/browser-matrix/nocircleno-osp1.svg)](https://saucelabs.com/u/nocircleno-osp1)
 =======================
 
 A transform rectangle to use in a your JavaScript application.
