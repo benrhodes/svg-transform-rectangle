@@ -3,8 +3,6 @@ SVG Transform Rectangle [![Build Status](https://travis-ci.org/benrhodes/svg-tra
 
 A transform rectangle to use in a your JavaScript application.
 
-[View Demo](http://www.nocircleno.com/svg_transform_rectangle/ "Demo")
-
 Features
 -----------------------
 
